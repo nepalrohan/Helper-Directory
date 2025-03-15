@@ -5,12 +5,12 @@ import express from 'express';
 import { configureCors } from './config/cors-config.js';
 import { addTimeStamp, requestLogger } from './middlewares/customMiddleware.js';
 const app = express();
-
+import { globalErrorHandler } from './utils/errorHandler.js';
 
 app.use(configureCors());
 app.use(requestLogger());
 app.use(addTimeStamp());
-
+app.use(globalErrorHandler);
 const PORT = process.env.PORT || 8000;
 app.use(express.json())
 

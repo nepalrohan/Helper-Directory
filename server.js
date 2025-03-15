@@ -6,7 +6,10 @@ import { configureCors } from './config/cors-config.js';
 import { addTimeStamp, requestLogger } from './middlewares/customMiddleware.js';
 const app = express();
 import { globalErrorHandler } from './utils/errorHandler.js';
+import { urlVersion } from './middlewares/apiVersioning.js';
 
+
+app.use('/api/v1', urlVersion('v1'));
 app.use(configureCors());
 app.use(requestLogger());
 app.use(addTimeStamp());
